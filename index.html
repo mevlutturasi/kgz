@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>江苏省朗诵协会社会艺术水平考级考官证</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e9eef3;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .idCard {
+            width: 100%;
+            background: #0D80FE;
+            overflow: hidden;
+        }
+
+        .idCard_detail {
+            width: 7.02rem;
+            margin: .24rem auto;
+            background: #fff;
+            border-radius: .02rem;
+        }
+
+        .idCard_header {
+            width: 100%;
+            height: .96rem;
+            line-height: .96rem;
+            text-align: center;
+            color: #fff;
+            font-size: .29rem;
+            font-weight: 800;
+            background: #003F9A;
+        }
+
+        .idCard_content {
+            width: 100%;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .idCard_content > div {
+            float: left;
+        }
+
+        .idCard_headImg {
+            width: 1.76rem;
+            height: 3.56rem;
+        }
+
+        .idCard_headImg > img {
+            width: 1.42rem;
+            height: 1.98rem;
+            margin: .40rem;
+            object-fit: cover;
+        }
+
+        .idCard_info {
+            width: 3.54rem;
+            height: 3.56rem;
+        }
+
+        .infoLine {
+            width: 9.34rem;
+            height: .34rem;
+            margin-bottom: .08rem;
+            margin-left: .40rem;
+            font-size: .24rem;
+            color: #0D0D0D;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: .34rem;
+        }
+
+        .label-wrapper {
+            float: left;
+            width: 1.2rem;
+            height: .34rem;
+            line-height: .34rem;
+        }
+
+        .label-text {
+            display: inline-flex;
+            justify-content: space-between;
+            width: 100%;
+            color: #000000;
+            font-weight: 650;
+        }
+
+        .label-text span {
+            display: inline-block;
+        }
+
+        .colon {
+            float: left;
+            color: #000000;
+            font-weight: 650;
+            margin-left: 0.05rem;
+        }
+
+        .infoLine > span:last-child {
+            display: inline-block;
+            height: .34rem;
+            line-height: .34rem;
+            margin-left: .16rem;
+            font-weight: normal;
+            color: #0D0D0D;
+        }
+
+        .infoLine_last {
+            margin-top: .40rem;
+        }
+
+        .idCard_code > img {
+            width: 1.14rem;
+            height: 1.14rem;
+            margin-top: 2.02rem;
+        }
+    </style>
+</head>
+<body>
+<div class="idCard">
+    <div class="idCard_detail">
+        <div class="idCard_header">
+            江苏省朗诵协会社会艺术水平考级考官证
+        </div>
+        <div class="idCard_content">
+            <div class="idCard_headImg">
+                <img id="imagePath" src="" alt="证件照">
+            </div>
+            <div class="idCard_info">
+                <div class="infoLine" style="margin-top: .40rem;">
+                    <div class="label-wrapper">
+                        <div class="label-text">
+                            <span>姓</span><span>名</span>
+                        </div>
+                    </div>
+                    <span class="colon">：</span>
+                    <span id="name">加载中...</span>
+                </div>
+                <div class="infoLine">
+                    <div class="label-wrapper">
+                        <div class="label-text">
+                            <span>执</span><span>考</span><span>专</span><span>业</span>
+                        </div>
+                    </div>
+                    <span class="colon">：</span>
+                    <span id="profession">加载中...</span>
+                </div>
+                <div class="infoLine">
+                    <div class="label-wrapper">
+                        <div class="label-text">
+                            <span>编</span><span>号</span>
+                        </div>
+                    </div>
+                    <span class="colon">：</span>
+                    <span id="bh">加载中...</span>
+                </div>
+                <div class="infoLine">
+                    <div class="label-wrapper">
+                        <div class="label-text">
+                            <span>受</span><span>聘</span><span>单</span><span>位</span>
+                        </div>
+                    </div>
+                    <span class="colon">：</span>
+                    <span id="spdw">加载中...</span>
+                </div>
+                <div class="infoLine">
+                    <div class="label-wrapper">
+                        <div class="label-text">
+                            <span>有</span><span>效</span><span>期</span><span>至</span>
+                        </div>
+                    </div>
+                    <span class="colon">：</span>
+                    <span id="remark">加载中...</span>
+                </div>
+                <div class="infoLine infoLine_last">
+                    江苏省文化和旅游厅监制
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- rem 适配脚本 -->
+<script>
+    (function (doc, win, image_width) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 100 * (clientWidth / image_width) + 'px';
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window, 750);
+</script>
+
+<!-- 人员数据 -->
+<script src="data.js"></script>
+
+<script>
+    window.addEventListener('load', function() {
+        // 获取 URL 中的 id 参数（人员编号）
+        function getParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        var id = getParam('id');
+        var data = examinersData[id];
+        if (!data) {
+            // 未找到人员，显示错误信息
+            document.getElementById('name').innerText = '未找到人员信息';
+            document.getElementById('profession').innerText = '请检查链接参数';
+            document.getElementById('bh').innerText = '----';
+            document.getElementById('spdw').innerText = '----';
+            document.getElementById('remark').innerText = '----';
+            document.getElementById('imagePath').src = '';
+            return;
+        }
+        // 填充数据
+        document.getElementById('name').innerText = data.name;
+        document.getElementById('profession').innerText = data.profession;
+        document.getElementById('bh').innerText = data.idNumber;
+        document.getElementById('spdw').innerText = data.employer;
+        document.getElementById('remark').innerText = data.validUntil;
+        // 加载照片
+        var img = document.getElementById('imagePath');
+        if (data.photoUrl) {
+            img.src = data.photoUrl;
+            img.onerror = function() {
+                console.log('照片加载失败，使用默认图片');
+                this.src = 'https://picsum.photos/200/280?random=1';
+            };
+        }
+    });
+</script>
+</body>
+</html>
