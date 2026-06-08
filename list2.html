@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>考官证人员列表（含二维码）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e9eef3;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            text-align: center;
+            color: #003F9A;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 12px;
+            padding: 16px;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .id {
+            font-size: 0.85rem;
+            color: #0D80FE;
+            background: #e6f0ff;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .link-area {
+            flex: 1;
+            background: #f5f7fa;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            word-break: break-all;
+            font-size: 0.85rem;
+        }
+
+        .link-area a {
+            color: #0D80FE;
+            text-decoration: none;
+        }
+
+        .link-area a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background: #0D80FE;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        button:hover {
+            background: #003F9A;
+        }
+
+        .copy-btn {
+            background: #28a745;
+        }
+        .copy-btn:hover {
+            background: #1e7e34;
+        }
+
+        .qrcode-btn {
+            background: #17a2b8;
+        }
+        .qrcode-btn:hover {
+            background: #117a8b;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 90%;
+            width: 300px;
+            position: relative;
+        }
+        .modal-content h3 {
+            margin-bottom: 16px;
+            color: #003F9A;
+        }
+        .modal-content .qrcode-container {
+            display: flex;
+            justify-content: center;
+            margin: 16px 0;
+        }
+        .modal-content .url {
+            font-size: 12px;
+            word-break: break-all;
+            color: #666;
+            margin-top: 12px;
+        }
+        .close-btn {
+            background: #ccc;
+            margin-top: 16px;
+            padding: 6px 20px;
+        }
+        .close-btn:hover {
+            background: #aaa;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        @media (max-width: 600px) {
+            .actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .link-area {
+                text-align: center;
+            }
+        }
+    </style>
+    <!-- QRCode 生成库 -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>📜 考官证人员列表</h1>
+    <div style="text-align: center;">
+        <div class="stats" id="stats">加载中...</div>
+    </div>
+    <div id="list"></div>
+    <div class="footer">
+        点击“二维码”按钮可生成专属二维码，扫码直接打开证件
+    </div>
+</div>
+
+<!-- 模态框 -->
+<div id="qrcodeModal" class="modal">
+    <div class="modal-content">
+        <h3>扫码查看证件</h3>
+        <div id="qrcodeCanvas" class="qrcode-container"></div>
+        <div id="modalUrl" class="url"></div>
+        <button class="close-btn" onclick="closeModal()">关闭</button>
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+    // 获取当前页面的基础 URL（去掉 list.html 部分）
+    var baseUrl = window.location.href.replace(/list\.html.*$/, '');
+    var total = Object.keys(examinersData).length;
+    document.getElementById('stats').innerText = '共 ' + total + ' 人';
+
+    // 生成列表
+    var html = '';
+    for (var id in examinersData) {
+        var person = examinersData[id];
+        var fullUrl = baseUrl + '?id=' + id;
+        html += '<div class="card">';
+        html += '  <div class="info">';
+        html += '    <span class="name">' + escapeHtml(person.name) + '</span>';
+        html += '    <span class="id">编号：' + escapeHtml(person.idNumber) + '</span>';
+        html += '  </div>';
+        html += '  <div class="actions">';
+        html += '    <div class="link-area"><a href="' + fullUrl + '" target="_blank">' + fullUrl + '</a></div>';
+        html += '    <button class="copy-btn" data-url="' + fullUrl + '">复制链接</button>';
+        html += '    <button class="qrcode-btn" data-url="' + fullUrl + '" data-name="' + escapeHtml(person.name) + '">二维码</button>';
+        html += '  </div>';
+        html += '</div>';
+    }
+    document.getElementById('list').innerHTML = html;
+
+    // 复制链接功能
+    var copyBtns = document.querySelectorAll('.copy-btn');
+    copyBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var url = this.getAttribute('data-url');
+            copyToClipboard(url);
+            var originalText = this.innerText;
+            this.innerText = '已复制！';
+            setTimeout(function() {
+                btn.innerText = originalText;
+            }, 1500);
+        });
+    });
+
+    // 二维码按钮功能
+    var qrcodeBtns = document.querySelectorAll('.qrcode-btn');
+    qrcodeBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var url = this.getAttribute('data-url');
+            var name = this.getAttribute('data-name');
+            showQRCode(url, name);
+        });
+    });
+
+    function showQRCode(url, name) {
+        var modal = document.getElementById('qrcodeModal');
+        var container = document.getElementById('qrcodeCanvas');
+        // 清空之前的二维码
+        container.innerHTML = '';
+        // 生成二维码 (使用 qrcode-generator)
+        var qr = qrcode(0, 'M');
+        qr.addData(url);
+        qr.make();
+        var size = qr.getModuleCount();
+        var cellSize = 4; // 每个模块像素
+        var canvas = document.createElement('canvas');
+        canvas.width = size * cellSize;
+        canvas.height = size * cellSize;
+        var ctx = canvas.getContext('2d');
+        for (var row = 0; row < size; row++) {
+            for (var col = 0; col < size; col++) {
+                ctx.fillStyle = qr.isDark(row, col) ? '#000000' : '#ffffff';
+                ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+            }
+        }
+        container.appendChild(canvas);
+        document.getElementById('modalUrl').innerText = name + ' 的专属链接：\n' + url;
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('qrcodeModal').style.display = 'none';
+    }
+
+    // 点击模态框背景关闭
+    window.onclick = function(event) {
+        var modal = document.getElementById('qrcodeModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    function copyToClipboard(text) {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+</script>
+</body>
+</html>
