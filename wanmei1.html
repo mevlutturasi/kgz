@@ -15,7 +15,7 @@
             background: #e9eef3;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* 改为顶部对齐，原为 center */
             min-height: 100vh;
             padding: 20px;
         }
@@ -89,7 +89,7 @@
         /* 标签容器：固定宽度，用于包裹文字和冒号 */
         .label-wrapper {
             float: left;
-            width: 1.2rem;  /* 稍微加宽，确保四个字也能完整显示并两端对齐 */
+            width: 1.2rem;
             height: .34rem;
             line-height: .34rem;
         }
@@ -234,7 +234,7 @@
             };
         }
         
-        // 设置文本信息（不再重复设置 spdw1）
+        // 设置文本信息
         document.getElementById('name').innerText = '李雪';
         document.getElementById('profession').innerText = '朗诵';
         document.getElementById('spdw').innerText = '江苏省朗诵协会';
