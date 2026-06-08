@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>江苏省朗诵协会社会艺术水平考级考官证</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0D80FE;      /* 改为天蓝色，与卡片外背景统一 */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;  /* 顶部对齐 */
+            min-height: 100vh;
+            padding: 0;               /* 移除内边距，卡片贴顶 */
+        }
+
+        .idCard {
+            width: 7.50rem;
+            height: 5rem;
+            background: #0D80FE;
+            overflow: hidden;
+        }
+
+        .idCard_detail {
+            width: 7.02rem;
+            height: 4.52rem;
+            margin: .24rem auto;
+            background: #fff;
+            border-radius: .02rem;
+        }
+
+        .idCard_header {
+            width: 100%;
+            height: .96rem;
+            line-height: .96rem;
+            text-align: center;
+            color: #fff;
+            font-size: .29rem;
+            font-weight: 800;
+            background: #003F9A;
+        }
+
+        .idCard_content {
+            width: 100%;
+            height: 3.56rem;
+            background: #fff;
+        }
+
+        .idCard_content > div {
+            float: left;
+        }
+
+        .idCard_headImg {
+            width: 1.76rem;
+            height: 3.56rem;
+        }
+
+        .idCard_headImg > img {
+            width: 1.42rem;
+            height: 1.98rem;
+            margin: .40rem;
+            object-fit: cover;
+        }
+
+        .idCard_info {
+            width: 3.54rem;
+            height: 3.56rem;
+        }
+
+        .infoLine {
+            width: 9.34rem;
+            height: .34rem;
+            margin-bottom: .08rem;
+            margin-left: .40rem;
+            font-size: .24rem;
+            color: #0D0D0D;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: .34rem;
+        }
+
+        /* 标签容器：固定宽度，用于包裹文字和冒号 */
+        .label-wrapper {
+            float: left;
+            width: 1.2rem;
+            height: .34rem;
+            line-height: .34rem;
+        }
+
+        /* 标签文字：加粗、纯黑，使用 flex 实现两端对齐 */
+        .label-text {
+            display: inline-flex;
+            justify-content: space-between;
+            width: 100%;
+            color: #000000;
+            font-weight: 650;
+        }
+
+        /* 单个字符的样式 */
+        .label-text span {
+            display: inline-block;
+        }
+
+        /* 冒号样式：纯黑色 + 加粗 */
+        .colon {
+            float: left;
+            color: #000000;
+            font-weight: 650;
+            margin-left: 0.05rem;
+        }
+
+        /* 具体信息样式：不加粗，保持原始颜色和间距 */
+        .infoLine > span:last-child {
+            display: inline-block;
+            height: .34rem;
+            line-height: .34rem;
+            margin-left: .16rem;
+            font-weight: normal;
+            color: #0D0D0D;
+        }
+
+        .infoLine_last {
+            margin-top: .40rem;
+        }
+
+        .idCard_code > img {
+            width: 1.14rem;
+            height: 1.14rem;
+            margin-top: 2.02rem;
+        }
+    </style>
+</head>
+<body>
+<div class="idCard">
+    <div class="idCard_detail">
+        <div class="idCard_header">
+            江苏省朗诵协会社会艺术水平考级考官证
+        </div>
+        <div class="idCard_content">
+            <div class="idCard_headImg">
+                <img id="imagePath" src="" alt="">
+            </div>
+            <div class="idCard_info">
+                <div class="infoLine" style="margin-top: .40rem;">
+                    <div class="label-wrapper">
+                        <div class="label-text">
+                            <span>姓</span><span>名</span>
+                        </div>
+                    </div>
+                    <span class="colon">：</span>
+                    <span id="name">李雪</span>
+                </div>
+                <div class="infoLine">
+                    <div class="label-wrapper">
+                        <div class="label-text">
+                            <span>执</span><span>考</span><span>专</span><span>业</span>
+                        </div>
+                    </div>
+                    <span class="colon">：</span>
+                    <span id="profession">朗诵</span>
+                </div>
+                <div class="infoLine">
+                    <div class="label-wrapper">
+                        <div class="label-text">
+                            <span>编</span><span>号</span>
+                        </div>
+                    </div>
+                    <span class="colon">：</span>
+                    <span id="bh">2113004</span>
+                </div>
+                <div class="infoLine">
+                    <div class="label-wrapper">
+                        <div class="label-text">
+                            <span>受</span><span>聘</span><span>单</span><span>位</span>
+                        </div>
+                    </div>
+                    <span class="colon">：</span>
+                    <span id="spdw">江苏省朗诵协会</span>
+                </div>
+                <div class="infoLine">
+                    <div class="label-wrapper">
+                        <div class="label-text">
+                            <span>有</span><span>效</span><span>期</span><span>至</span>
+                        </div>
+                    </div>
+                    <span class="colon">：</span>
+                    <span id="remark">2029年7月</span>
+                </div>
+                <div class="infoLine infoLine_last">
+                    江苏省文化和旅游厅监制
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- rem 适配脚本（加入整体缩放系数 0.93） -->
+<script>
+    (function (doc, win, image_width) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                // 整体缩放系数（0.93 使卡片略微缩小，可自行调整）
+                var scale = 0.93;
+                docEl.style.fontSize = scale * 100 * (clientWidth / image_width) + 'px';
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window, 750);
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    window.addEventListener('load', function() {
+        var imgUrl = "http://www.lsxh.zhaokaoyun.com//avatar/company/21/LS178086346210.jpg";
+        var imgElement = document.getElementById('imagePath');
+        
+        if (imgElement) {
+            imgElement.src = imgUrl;
+            imgElement.onerror = function() {
+                console.log('原图加载失败，使用测试图片');
+                this.src = 'http://www.lsxh.zhaokaoyun.com//avatar/company/21/LS178086346210.jpg';
+            };
+            imgElement.onload = function() {
+                console.log('图片加载成功');
+            };
+        }
+        
+        document.getElementById('name').innerText = '李雪';
+        document.getElementById('profession').innerText = '朗诵';
+        document.getElementById('spdw').innerText = '江苏省朗诵协会';
+        document.getElementById('bh').innerText = '2113004';
+        document.getElementById('remark').innerText = '2029年7月';
+    });
+</script>
+</body>
+</html>
